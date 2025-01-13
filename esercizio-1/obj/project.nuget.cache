@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "N1ZJOcYzyWNUkIiHmocOf4NQP8LRWmgp631FmM2GcObfNf37AWZ5Vqv+vIii6EJDhGdVlpLyoiBoBFvcG6DgyQ==",
+  "dgSpecHash": "an0pJwvX4tffVEPfiFGq/AUNB+iKVrf9VjtPXLTAflO80P+CbCDAa+yYqMx5xTXHjAglHjD3rjoxu55h53Du4Q==",
   "success": true,
   "projectFilePath": "/home/obeta/Desktop/Paolo/Projects/c#/esercizio-1-c-/esercizio-1/esercizio-1.csproj",
   "expectedPackageFiles": [
     "/home/obeta/.nuget/packages/microsoft.aspnetcore.openapi/8.0.11/microsoft.aspnetcore.openapi.8.0.11.nupkg.sha512",
     "/home/obeta/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/obeta/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "/home/obeta/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "/home/obeta/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
+    "/home/obeta/.nuget/packages/npgsql/9.0.2/npgsql.9.0.2.nupkg.sha512",
     "/home/obeta/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "/home/obeta/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "/home/obeta/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
