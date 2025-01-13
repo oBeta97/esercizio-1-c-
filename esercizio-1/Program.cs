@@ -1,7 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Aggiungi tutti i figli di ControllerBase
+builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,10 +17,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", async (context) =>
-{
-    await context.Response.WriteAsync("ciao");
-});
+// Esegui il map di tutti i controller trovati
+app.MapControllers();
 
 
 app.Run();
