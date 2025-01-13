@@ -1,3 +1,5 @@
+using esercizio_1.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Aggiungi tutti i figli di ControllerBase
@@ -5,6 +7,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<Idatabaseaccessor, PostgresDatabaseAccessor>();
 
 var app = builder.Build();
 
