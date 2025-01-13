@@ -3,19 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TestController : ControllerBase
+public class TestController(ITestServices testServices) : ControllerBase
 {
-
-    public TestController(ITestServices testServices)
-    {
-        TestServices = testServices;
-    }
-
-    public ITestServices TestServices { get; }
+    public ITestServices TestServices { get; } = testServices;
 
     [HttpGet]
-    public IActionResult Test(){
-        return Ok("ciao");
+    public IActionResult Test()
+    {
+        return Ok(TestServices.Test());
     }
 
 }

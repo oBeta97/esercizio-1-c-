@@ -1,20 +1,25 @@
+using System.Data;
 using esercizio_1.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-namespace   esercizio_1.Services
+namespace esercizio_1.Services
 {
-    public class TestService : ITestServices
+    public class TestService(Idatabaseaccessor db) : ITestServices
     {
-        public TestService(Idatabaseaccessor db)
-        {
-            Db = db;
-        }
+        public Idatabaseaccessor Db { get; } = db;
 
-        public Idatabaseaccessor Db { get; }
-
-        public string Test()
+        public List<long> Test()
         {
-            var result = Db.Query("SELECT * FROM Kumbukani");
-            return "ciao";
+            var res = new List<long>();
+
+            var queryResult = Db.Query("SELECT * FROM public.\"Kumbukani\"");
+
+            var dataTable = queryResult.Tables[0];
+
+            foreach (DataRow row in dataTable.Rows)
+                res.Add( (long) row["ID"] );
+
+            return res;
         }
     }
 }

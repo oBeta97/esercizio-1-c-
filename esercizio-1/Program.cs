@@ -1,4 +1,6 @@
 using esercizio_1.Database;
+using esercizio_1.Interfaces;
+using esercizio_1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Dependency injection, quando il builder trova queste interfacce inietta la classe specificata
 builder.Services.AddScoped<Idatabaseaccessor, PostgresDatabaseAccessor>();
+builder.Services.AddScoped<ITestServices, TestService>();
 
 var app = builder.Build();
 
