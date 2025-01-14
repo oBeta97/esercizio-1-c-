@@ -2,5 +2,7 @@ using System.Data;
 
 public interface Idatabaseaccessor
 {
-    public DataSet Query(string query);
+    public DataSet ExecuteSelectQuery(FormattableString query);
+
+    public int ExecuteModifyQuery (FormattableString query);
 }

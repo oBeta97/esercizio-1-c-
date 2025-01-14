@@ -13,11 +13,16 @@ namespace esercizio_1.Services
         {
             var res = new List<long>();
 
-            // RIP Kumbukani :(
-            // var queryResult = Db.Query("SELECT * FROM public.\"Kumbukani\"");
+            // int id = 4;
 
-            // var dataTable = queryResult.Tables[0];
-            var dataTable = new DataTable();
+            // FormattableString q = $"SELECT * FROM public.\"Kumbukani\" WHERE \"ID\" = {id}";
+            FormattableString q = $"SELECT * FROM public.\"Kumbukani\"";
+
+            // RIP Kumbukani :(
+            var queryResult = Db.ExecuteSelectQuery(q);
+
+            var dataTable = queryResult.Tables[0];
+            // var dataTable = new DataTable();
 
             foreach (DataRow row in dataTable.Rows)
                 res.Add( (long) row["ID"] );
