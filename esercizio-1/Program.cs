@@ -1,4 +1,5 @@
 using esercizio_1.Database;
+using esercizio_1.Entities;
 using esercizio_1.Interfaces;
 using esercizio_1.Services;
 
@@ -13,6 +14,8 @@ builder.Services.AddSwaggerGen();
 // Dependency injection, quando il builder trova queste interfacce inietta la classe specificata
 builder.Services.AddScoped<Idatabaseaccessor, PostgresDatabaseAccessor>();
 builder.Services.AddScoped<ITestServices, TestService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+
 
 var app = builder.Build();
 
