@@ -14,7 +14,7 @@ namespace esercizio_1.Database
             res.Tables.Add(resTable);
 
 
-            using var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=Test;Username=postgres;Password=1234;");
+            using var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=libraryDb;Username=postgres;Password=1234;");
 
             connection.Open();
 

@@ -8,13 +8,16 @@ namespace esercizio_1.Services
     {
         public Idatabaseaccessor Db { get; } = db;
 
+        // Dummy method! 
         public List<long> Test()
         {
             var res = new List<long>();
 
-            var queryResult = Db.Query("SELECT * FROM public.\"Kumbukani\"");
+            // RIP Kumbukani :(
+            // var queryResult = Db.Query("SELECT * FROM public.\"Kumbukani\"");
 
-            var dataTable = queryResult.Tables[0];
+            // var dataTable = queryResult.Tables[0];
+            var dataTable = new DataTable();
 
             foreach (DataRow row in dataTable.Rows)
                 res.Add( (long) row["ID"] );
