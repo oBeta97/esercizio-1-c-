@@ -58,6 +58,24 @@ namespace esercizio_1.Entities
             FormattableString query = $"DELETE FROM authors WHERE id = {idToDelete}";
 
             return db.ExecuteModifyQuery(query) == 1;
+        }
+
+        public List<Book>? GetAuthorBooks(int authorId)
+        {
+            List<Book> res = [];
+
+            FormattableString query = $"SELECT b.* FROM authors a JOIN books b ON b.author_id = a.id WHERE a.id = {authorId}";
+
+            DataSet queryRes = db.ExecuteSelectQuery(query);
+            DataTable resTable = queryRes.Tables[0];
+
+            if (resTable.Rows.Count == 0)
+                return null;
+
+            foreach (DataRow dataRow in resTable.Rows)
+                res.Add(Book.FromDataRow(dataRow));
+
+            return res;
 
         }
     }

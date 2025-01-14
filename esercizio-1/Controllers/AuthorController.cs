@@ -23,7 +23,18 @@ namespace esercizio_1.Controllers
             if (author == null)
                 return NotFound();
 
-            return Ok();
+            return Ok(author);
+        }
+
+        [HttpGet("{id:int}/books")]
+        public IActionResult GetBooks(int id)
+        {
+            Author? author = authorService.GetById(id);
+
+            if (author == null)
+                return NotFound();
+
+            return Ok(authorService.GetAuthorBooks(author.Id));
         }
 
         [HttpPost]
