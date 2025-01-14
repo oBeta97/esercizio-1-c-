@@ -1,5 +1,6 @@
 using System.Data;
 using esercizio_1.Interfaces;
+using esercizio_1.Payloads;
 
 namespace esercizio_1.Entities
 {
@@ -20,16 +21,43 @@ namespace esercizio_1.Entities
             return res;
         }
 
-        public Author GetById(int id)
+        public Author? GetById(int id)
         {
             FormattableString query = $"SELECT * FROM authors WHERE id = {id}";
 
             DataSet queryRes = db.ExecuteSelectQuery(query);
             DataTable resTable = queryRes.Tables[0];
 
+            if (resTable.Rows.Count == 0)
+                return null;
+
             Author res = Author.FromDataRow(resTable.Rows[0]);
 
             return res;
+
+        }
+
+        public bool Insert(AuthorDTO author)
+        {
+            FormattableString query = $"INSERT INTO authors (name, country) VALUES ({author.Name}, {author.Country})";
+
+            return db.ExecuteModifyQuery(query) == 1;
+
+        }
+
+        public bool Update(int id, AuthorDTO dto)
+        {
+            FormattableString query = $"UPDATE authors SET name = {dto.Name} , country = {dto.Country} WHERE id = {id}";
+
+            return db.ExecuteModifyQuery(query) == 1;
+
+        }
+
+        public bool Delete(int idToDelete)
+        {
+            FormattableString query = $"DELETE FROM authors WHERE id = {idToDelete}";
+
+            return db.ExecuteModifyQuery(query) == 1;
 
         }
     }
