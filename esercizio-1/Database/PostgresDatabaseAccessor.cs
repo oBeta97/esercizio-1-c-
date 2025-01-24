@@ -6,7 +6,7 @@ namespace esercizio_1.Database
     public class PostgresDatabaseAccessor : Idatabaseaccessor
     {
 
-        private readonly string ConnectionString = "Server=localhost;Port=5432;Database=Test;Username=postgres;Password=1234;";
+        private readonly string ConnectionString = "Server=localhost;Port=5432;Database=librarydb;Username=postgres;Password=1234;";
 
         private (string query, NpgsqlParameter[] parameters) CreateQueryWithParameter(FormattableString formattedQuery)
         {
