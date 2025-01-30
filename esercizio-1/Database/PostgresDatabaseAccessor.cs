@@ -1,14 +1,16 @@
 using System.Data;
+using esercizio_1.Interfaces;
 using Npgsql;
 
 namespace esercizio_1.Database
 {
-    public class PostgresDatabaseAccessor : Idatabaseaccessor
+    public class PostgresDatabaseAccessor(IdbDetails _dbDetails) : Idatabaseaccessor
     {
 
-        private readonly string ConnectionString = "Server=localhost;Port=5432;Database=librarydb;Username=postgres;Password=1234;";
+        private readonly string ConnectionString = _dbDetails.GetConnectionString();
 
-        private (string query, NpgsqlParameter[] parameters) CreateQueryWithParameter(FormattableString formattedQuery)
+        // Ritorna una tupla stringa/NpgsqlParameter
+        private static (string query, NpgsqlParameter[] parameters) CreateQueryWithParameter(FormattableString formattedQuery)
         {
 
             // SELECT * FROM "Kumbukani" WHERE ID = @0 -> parametro: @0 = 2
