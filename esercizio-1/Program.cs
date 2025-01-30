@@ -4,8 +4,22 @@ using esercizio_1.Entities.EFCore;
 using esercizio_1.Interfaces;
 using esercizio_1.Services;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Build di Serilog con impostazione di cosa, come e dove trascrivere le informazioni da loggare
+builder.Host.UseSerilog((context, services, configuration) =>
+    configuration
+        // --- Configurazione manuale ---
+        // .WriteTo.Console() // Log in console
+        // .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day) // log giornaliero su file (nuovo file ogni giorno)
+
+        // --- Configurazione da file di configurazione appSettings.json ---
+        .ReadFrom.Configuration(context.Configuration) // Lettura delle configurazioni in appsettings
+);
+
 
 // Aggiungi tutti i figli di ControllerBase
 builder.Services.AddControllers();
@@ -34,6 +48,9 @@ builder.Services.AddScoped<IBookService, BooksService>();
 
 var app = builder.Build();
 
+
+Log.Information("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -49,3 +66,4 @@ app.MapControllers();
 
 app.Run();
 
+Log.CloseAndFlush();

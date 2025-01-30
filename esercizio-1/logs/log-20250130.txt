@@ -1,0 +1,19 @@
+2025-01-30 17:56:26.738 +01:00 [INF] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!
+2025-01-30 17:56:27.013 +01:00 [INF] Now listening on: http://localhost:5174
+2025-01-30 17:56:27.016 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-30 17:56:27.017 +01:00 [INF] Hosting environment: Development
+2025-01-30 17:56:27.017 +01:00 [INF] Content root path: /home/obeta/Desktop/Paolo/Projects/c#/esercizio-1-c-/esercizio-1
+2025-01-30 17:56:27.164 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5174/swagger/index.html - null null
+2025-01-30 17:56:27.263 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5174/swagger/index.html - 200 null text/html;charset=utf-8 100.387ms
+2025-01-30 17:56:27.397 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5174/swagger/favicon-16x16.png - null null
+2025-01-30 17:56:27.478 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5174/swagger/v1/swagger.json - null null
+2025-01-30 17:56:27.487 +01:00 [INF] Sending file. Request path: '/favicon-16x16.png'. Physical path: 'N/A'
+2025-01-30 17:56:27.487 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5174/swagger/favicon-16x16.png - 499 665 image/png 90.8656ms
+2025-01-30 17:56:27.563 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5174/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 85.6221ms
+2025-01-30 17:58:52.918 +01:00 [INF] AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!
+2025-01-30 17:58:53.172 +01:00 [INF] Now listening on: http://localhost:5174
+2025-01-30 17:58:53.176 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-01-30 17:58:53.176 +01:00 [INF] Hosting environment: Development
+2025-01-30 17:58:53.176 +01:00 [INF] Content root path: /home/obeta/Desktop/Paolo/Projects/c#/esercizio-1-c-/esercizio-1
+2025-01-30 17:58:53.304 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5174/swagger/index.html - null null
+2025-01-30 17:58:53.397 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5174/swagger/index.html - 200 null text/html;charset=utf-8 94.6508ms
