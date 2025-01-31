@@ -5,10 +5,16 @@ using esercizio_1.Entities.EFCore;
 using esercizio_1.Interfaces;
 using esercizio_1.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Accedo agli appSettings
+var configuration = builder.Configuration;
+
+
 
 // Leggo tramite il pachetto nuget il file .env
 Env.Load("./.env");
@@ -60,6 +66,8 @@ builder.Services.AddScoped<Idatabaseaccessor, PostgresDatabaseAccessor>();
 builder.Services.AddScoped<ITestServices, TestService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IBookService, BooksService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<ICachedGenreService, CachedGenreService>();
 
 // Aggiungiamo un singleton di IdbDetails specificandone la classe da recuperare manualmente tramite gli IOptions
 // in questo caso va a cercare un IOptions<DatabaseSettings> che abbiamo istanziato sopra
@@ -71,6 +79,13 @@ builder.Services.AddSingleton<IdbDetails>(sp =>
     // NB! Non da errore se la connectionString non è stata trovata!!!
     sp.GetRequiredService<IOptions<DatabaseSettings>>().Value
 );
+
+
+// Aggiungo il servizio di caching per la DI
+builder.Services.AddMemoryCache();
+
+// Andiamo a leggere negli appsettings il SizeLimit della memoria ram che andremo ad occupare e lo configuro nell'applicazione
+builder.Services.Configure<MemoryCacheOptions>(configuration.GetSection("CacheOptions"));
 
 
 var app = builder.Build();
