@@ -4,6 +4,7 @@ using esercizio_1.Entities;
 using esercizio_1.Entities.EFCore;
 using esercizio_1.Interfaces;
 using esercizio_1.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
@@ -14,7 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Accedo agli appSettings
 var configuration = builder.Configuration;
 
-
+// Prendo tutti i CacheProfile presenti nel appsettings
+Dictionary<string, CacheProfile> cacheProfiles = configuration.GetSection("CacheProfiles")
+                                                    // Il get va a mettere nella key del dictionaly il titolo della sezione e mappa il contenuto nell'oggetto specificato
+                                                    .Get<Dictionary<string, CacheProfile>>() ?? new Dictionary<string, CacheProfile>();
 
 // Leggo tramite il pachetto nuget il file .env
 Env.Load("./.env");
@@ -55,7 +59,7 @@ builder.Services.AddDbContextPool<LibrarydbContext>(
 // Quando un servizio ha bisogno di IOptions<DatabaseSettings>, usa questa configurazione
 builder.Services.Configure<DatabaseSettings>(options =>
 {
-    if(connectionString == "CONNECTION_STRING NOT FOUND!")
+    if (connectionString == "CONNECTION_STRING NOT FOUND!")
         throw new Exception("CONNECTION_STRING NOT FOUND!");
 
     options.ConnectionString = connectionString;
@@ -81,6 +85,28 @@ builder.Services.AddSingleton<IdbDetails>(sp =>
 );
 
 
+// Aggiungo il ResponseCaching al progetto
+builder.Services.AddResponseCaching();
+
+// Aggiungo i profili per le mie response
+builder.Services.AddControllers(options =>
+{
+    // Metodo "classico" con i dati dei profili hard coded
+    // options.CacheProfiles.Add("Default", new CacheProfile
+    // {
+    //     Duration = 120,
+    //     Location = ResponseCacheLocation.Any,
+    //     // Definisce se i nodi intermedi della rete devono salvare o meno i dati
+    //     NoStore = false
+    // });
+
+    // Aggiunta dinamica dei profili presi da appsettings
+    // In questo caso Default e NoCache
+    foreach (var cacheProfile in cacheProfiles)
+        // Add vuole un Dictionary<string, CacheProfile>!
+        options.CacheProfiles.Add(cacheProfile);
+});
+
 // Aggiungo il servizio di caching per la DI
 builder.Services.AddMemoryCache();
 
@@ -98,6 +124,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+// Aggiungo alla pipeline di middleware quello del responsecaching
+app.UseResponseCaching();
 
 // Esegui il map di tutti i controller trovati
 app.MapControllers();

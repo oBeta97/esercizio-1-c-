@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using esercizio_1.Entities.EFCore;
 using esercizio_1.Interfaces;
 using esercizio_1.Payloads;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace esercizio_1.Services
@@ -46,13 +47,10 @@ namespace esercizio_1.Services
             }) ?? [];
         }
 
+        // La cache in questo caso è gestita dal controller!
         public Genre? GetById(int id)
         {
-             return cache.GetOrCreate($"Genre{id}", cacheEntry =>
-            {
-                cacheEntry.SetAbsoluteExpiration(TimeSpan.FromSeconds(120));
-                return genreService.GetById(id);
-            });
+            return genreService.GetById(id);
         }
 
         public bool Insert(GenreDTO dto)

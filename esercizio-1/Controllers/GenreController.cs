@@ -17,6 +17,16 @@ namespace esercizio_1.Controllers
         }
 
         [HttpGet("{id:int}")]
+        // METODO "CLASSICO":
+            // Applicazione della Response cache (duration in secondi):
+            // diciamo al server di rispondere con un "Cache-control: <location>, max-age = <duration>" negli headers
+            //  Client -> Solo il browser salverà in cache la risposta
+            //  Public -> tutti i nodi che riceveranno la risposta (e hanno un caching) salveranno la risposta
+            // [ResponseCache(Duration = 120, Location = ResponseCacheLocation.Client)]
+            // NB! il valore di default di "Location" è public!
+            // [ResponseCache(Duration = 120)]
+        // METODO PROFILI:
+        [ResponseCache(CacheProfileName = "Default")]
         public IActionResult GetById(int id)
         {
             return Ok(genreService.GetById(id));
