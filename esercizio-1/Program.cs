@@ -42,7 +42,11 @@ builder.Host.UseSerilog((context, services, configuration) =>
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    // Abilita le annotazioni (importante se vuoi usare [SwaggerOperation])
+    options.EnableAnnotations();
+});
 
 // In questo caso i dbContext vengono creati ad ogni richiesta (più sicuro ma più lento)
 // builder.Services.AddDbContext<LibrarydbContext>(
