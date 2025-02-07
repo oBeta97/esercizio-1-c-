@@ -10,18 +10,41 @@ namespace esercizio_1.Controllers
     [Route("api/[controller]")]
     [SwaggerTag("Endpoint gestiti con EF CORE")]
 
-    public class BookController(IBookService authorService) : ControllerBase
+    public class BookController(IBookService bookService) : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("all")]
+        [SwaggerOperation(
+            Summary = "Recupera tutti i books",
+            Description = "Restituisce una lista e non una Page di books"
+        )]
         public IActionResult GetAll()
         {
-            return Ok(authorService.GetAll());
+            return Ok(bookService.GetAll());
+        }
+
+        [HttpGet()]
+        [SwaggerOperation(
+            Summary = "Crea una classe Page dei books",
+            Description = "Restituisce la paginazione di books"
+        )]
+        public IActionResult GetPage(
+                [FromQuery] int pageIndex = 0,
+                [FromQuery] string orderBy = "",
+                [FromQuery] bool ascending = false
+            )
+        {
+            if (pageIndex < 0)
+                return BadRequest("");
+
+
+            return Ok(bookService.GetPage(pageIndex, orderBy, ascending));
         }
 
 
         [HttpGet("{id:int}")]
-        public IActionResult GetById(int id){
-            return Ok(authorService.GetById(id));
+        public IActionResult GetById(int id)
+        {
+            return Ok(bookService.GetById(id));
         }
 
     }

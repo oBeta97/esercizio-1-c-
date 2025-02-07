@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using esercizio_1.Entities.EFCore;
+using esercizio_1.Entities.Utils;
 using esercizio_1.Interfaces;
 using esercizio_1.Payloads;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +52,11 @@ namespace esercizio_1.Services
         public Genre? GetById(int id)
         {
             return genreService.GetById(id);
+        }
+
+        public Page<Genre> GetPage(int pageIndex, string orderBy, bool ascending)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Insert(GenreDTO dto)

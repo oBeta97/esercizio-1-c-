@@ -1,11 +1,19 @@
 using System.Data;
+using esercizio_1.Entities.Settings;
+using esercizio_1.Entities.Utils;
 using esercizio_1.Interfaces;
 using esercizio_1.Payloads;
+using Microsoft.Extensions.Options;
+using Sprache;
 
 namespace esercizio_1.Entities
 {
-    public class AuthorService(Idatabaseaccessor db) : IAuthorService
+    public class AuthorService(IOptions<AuthorsSettings> options, Idatabaseaccessor _db) : IAuthorService
     {
+
+        private readonly Idatabaseaccessor db = _db;
+        private readonly AuthorsSettings authorsSettings = options.Value;
+
         public List<Author> GetAll()
         {
             List<Author> res = [];
@@ -77,6 +85,42 @@ namespace esercizio_1.Entities
 
             return res;
 
+        }
+
+        public Page<Author> GetPage(int pageIndex, string orderBy, bool ascending)
+        {
+            int pageLimit = authorsSettings.PerPage;
+
+            if (!authorsSettings.Order.Allow.Contains(orderBy))
+                orderBy = authorsSettings.Order.By;
+
+            string orderDirection = ascending ? "ASC" : "DESC";
+
+
+            FormattableString query = @$"
+                SELECT *
+                FROM authors 
+                ORDER BY {(NotASqlParameter)orderBy} {(NotASqlParameter)orderDirection} 
+                LIMIT {pageLimit} 
+                OFFSET {pageLimit * pageIndex};
+
+                SELECT COUNT(*) as count
+                FROM authors";
+
+            DataSet queryRes = db.ExecuteSelectQuery(query);
+            DataTable resPage = queryRes.Tables[0];
+            DataTable resCount = queryRes.Tables[1];
+
+            List<Author> items = [];
+            foreach (DataRow dataRow in resPage.Rows)
+                items.Add(Author.FromDataRow(dataRow));
+
+            long totItems = (long)resCount.Rows[0]["count"];
+
+
+            Page<Author> res = new(items,totItems, pageLimit, pageIndex);
+
+            return res;
         }
     }
 }
