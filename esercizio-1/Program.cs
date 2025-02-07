@@ -74,8 +74,13 @@ builder.Services.Configure<DatabaseSettings>(options =>
 builder.Services.Configure<AuthorsSettings>(
     builder.Configuration.GetSection("Authors")
 );
+builder.Services.Configure<BooksSettings>(
+    builder.Configuration.GetSection("Books")
+);
+
 // Aggiungo un transient per tutti i service di authorSettings
 builder.Services.AddTransient<AuthorsSettings>();
+builder.Services.AddTransient<BooksSettings>();
 
 // Dependency injection, quando il builder trova queste interfacce inietta la classe specificata
 builder.Services.AddScoped<Idatabaseaccessor, PostgresDatabaseAccessor>();

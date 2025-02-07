@@ -12,12 +12,20 @@ namespace esercizio_1.Controllers
     public class AuthorController(IAuthorService authorService) : ControllerBase
     {
         [HttpGet("all")]
+        [SwaggerOperation(
+            Summary = "Recupera tutti gli autori",
+            Description = "Restituisce una lista e non una Page di autori"
+        )]
         public IActionResult GetAll()
         {
             return Ok(authorService.GetAll());
         }
 
         [HttpGet()]
+        [SwaggerOperation(
+            Summary = "Crea una classe Page degli autori",
+            Description = "Restituisce la paginazione di autori"
+        )]
         public IActionResult GetPage(
                 [FromQuery] int pageIndex = 0,
                 [FromQuery] string orderBy = "",

@@ -89,8 +89,6 @@ namespace esercizio_1.Entities
 
         public Page<Author> GetPage(int pageIndex, string orderBy, bool ascending)
         {
-            Page<Author> res = new();
-
             int pageLimit = authorsSettings.PerPage;
 
             if (!authorsSettings.Order.Allow.Contains(orderBy))
@@ -113,15 +111,14 @@ namespace esercizio_1.Entities
             DataTable resPage = queryRes.Tables[0];
             DataTable resCount = queryRes.Tables[1];
 
+            List<Author> items = [];
             foreach (DataRow dataRow in resPage.Rows)
-                res.Items.Add(Author.FromDataRow(dataRow));
+                items.Add(Author.FromDataRow(dataRow));
 
             long totItems = (long)resCount.Rows[0]["count"];
 
-            res.TotalItems = totItems;
-            res.PageSize = pageLimit;
-            res.TotalPages = (int)totItems / pageLimit + 1;
-            res.PageNumber = pageIndex;
+
+            Page<Author> res = new(items,totItems, pageLimit, pageIndex);
 
             return res;
         }
