@@ -27,7 +27,7 @@ Il progetto richiede l'utilizzo di un database **PostgreSQL** per funzionare cor
 2. Nella **cartella principale del progetto**, crea un file denominato `.env` (se non esiste già).
 3. All'interno del file `.env`, inserisci la tua connection string. Ad esempio:
    ```env
-   ConnectionStrings__DefaultConnection=Host=localhost;Port=5432;Database=NomeTuoDatabase;Username=nomeUtente;Password=tuaPassword
+   CONNECTION_STRING=Server=localhost;Port=5432;Database=librarydb;Username=<tuoUsername>;Password=<TuaPassword>
    ```
    Assicurati di sostituire i valori con quelli appropriati per il tuo ambiente.
 
