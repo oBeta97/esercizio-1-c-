@@ -11,11 +11,27 @@ namespace esercizio_1.Controllers
     [SwaggerTag("Endpoint gestiti con ADO.NET")]
     public class AuthorController(IAuthorService authorService) : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("all")]
         public IActionResult GetAll()
         {
             return Ok(authorService.GetAll());
         }
+
+        [HttpGet()]
+        public IActionResult GetPage(
+                [FromQuery] int pageIndex = 0,
+                [FromQuery] string orderBy = "",
+                [FromQuery] bool ascending = false
+            )
+        {
+            if (pageIndex >= 0)
+            {
+                return Ok(authorService.GetPage(pageIndex, orderBy, ascending));
+            }
+
+            return BadRequest();
+        }
+
 
         [HttpGet("{id:int}")]
         public IActionResult GetById(int id)

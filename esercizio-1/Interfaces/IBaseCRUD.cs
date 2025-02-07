@@ -1,3 +1,5 @@
+using esercizio_1.Entities.Utils;
+
 namespace esercizio_1.Interfaces
 {
 
@@ -5,6 +7,7 @@ namespace esercizio_1.Interfaces
     public interface IBaseCRUD<T, DTO>
     {
         public List<T> GetAll();
+        public Page<T> GetPage(int pageIndex, string orderBy, bool ascending);
         public T? GetById(int id);
         public bool Insert(DTO dto);
         public bool Update(int idToUpdate, DTO dto);

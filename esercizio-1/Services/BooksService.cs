@@ -1,6 +1,7 @@
 
 
 using esercizio_1.Entities.EFCore;
+using esercizio_1.Entities.Utils;
 using esercizio_1.Interfaces;
 using esercizio_1.Payloads;
 
@@ -23,6 +24,11 @@ namespace esercizio_1.Services
         {
             // Se il risultato è piu di 1 solleverà un'eccezione. Se non c'è corrispondenza restituisce null!
             return dbContext.Books.Where(book => book.Id == id).SingleOrDefault();
+        }
+
+        public Page<Book> GetPage(int pageIndex, string orderBy, bool ascending)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Insert(BookDTO dto)

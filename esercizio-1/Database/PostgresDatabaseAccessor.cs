@@ -1,4 +1,5 @@
 using System.Data;
+using esercizio_1.Entities.Utils;
 using esercizio_1.Interfaces;
 using Npgsql;
 
@@ -18,6 +19,10 @@ namespace esercizio_1.Database
             var npgParameters = new List<NpgsqlParameter>();
             for (var i = 0; i < queryArguments.Length; i++)
             {
+
+                if (queryArguments[i] is NotASqlParameter)
+                    continue;
+
                 var parameter = new NpgsqlParameter(i.ToString(), queryArguments[i]);
                 npgParameters.Add(parameter);
                 queryArguments[i] = "@" + i;
@@ -47,9 +52,6 @@ namespace esercizio_1.Database
             var queryWithParameter = CreateQueryWithParameter(formattedQuery);
 
             DataSet res = new DataSet();
-            DataTable resTable = new DataTable();
-
-            res.Tables.Add(resTable);
 
 
             using var connection = new NpgsqlConnection(ConnectionString);
@@ -62,7 +64,23 @@ namespace esercizio_1.Database
 
             using var reader = cmd.ExecuteReader();
 
-            resTable.Load(reader);
+            int tableIndex = 0;
+
+            // Metodo dinamico per gestire più query:
+            // Carichiamo la prima tabella
+            DataTable firstTable = new DataTable($"Table{tableIndex}");
+            res.Tables.Add(firstTable);
+            firstTable.Load(reader);
+
+            // Se reader non è stato chiuso (quindi dovrebbero esserci nuove tabelle)
+            while (!reader.IsClosed)
+            {
+                tableIndex++;
+                DataTable resTable = new DataTable($"Table{tableIndex}");
+                res.Tables.Add(resTable);
+                resTable.Load(reader);
+            }
+
 
             return res;
         }
