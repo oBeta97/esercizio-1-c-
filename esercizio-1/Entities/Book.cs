@@ -17,10 +17,10 @@ namespace esercizio_1.Entities
             {
                 Id = (int)bookRow["id"],
                 Title = (string)bookRow["title"],
-                AuthorId = bookRow["author_id"] != null ? (int) bookRow["author_id"] : null,
-                GenreId = bookRow["genre_id"] != null ? (int) bookRow["genre_id"] : null,
-                PublicationYear = bookRow["publication_year"] != null ? (int) bookRow["publication_year"] : null,
-                IsAvailable = (bool) bookRow["is_available"]
+                AuthorId = bookRow["author_id"] != null ? (int)bookRow["author_id"] : null,
+                GenreId = bookRow["genre_id"] != null ? (int)bookRow["genre_id"] : null,
+                PublicationYear = bookRow["publication_year"] != null ? (int)bookRow["publication_year"] : null,
+                IsAvailable = (bool)bookRow["is_available"]
             };
         }
 

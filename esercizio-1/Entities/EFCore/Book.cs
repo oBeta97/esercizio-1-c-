@@ -5,6 +5,7 @@ namespace esercizio_1.Entities.EFCore;
 
 public partial class Book(string title)
 {
+
     public int Id { get; set; }
 
     public string Title { get; set; } = title ?? throw new ArgumentNullException(nameof(title));

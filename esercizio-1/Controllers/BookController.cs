@@ -47,6 +47,23 @@ namespace esercizio_1.Controllers
             return Ok(bookService.GetById(id));
         }
 
+        [HttpPost]
+        public IActionResult Insert([FromBody] BookDTO dto)
+        {
+            // Dato che il DTO ha le DataAnnotation .net esegue un controllo se le annotazioni sono state rispettate
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Body object is wrong");
+            }
+
+            if (!bookService.Insert(dto)){
+                return StatusCode(500, "Internal server error!");
+            }
+
+            return Created();
+
+        }
+
     }
 
 }
