@@ -92,7 +92,7 @@ builder.Services.AddScoped<ICachedGenreService, CachedGenreService>();
 
 // Aggiungiamo un singleton di IdbDetails specificandone la classe da recuperare manualmente tramite gli IOptions
 // in questo caso va a cercare un IOptions<DatabaseSettings> che abbiamo istanziato sopra
-builder.Services.AddSingleton<IdbDetails>(sp =>
+builder.Services.AddSingleton<IDbDetails>(sp =>
     // In questo caso cerca una ISTANZA IOptions<DatabaseSettings>, se non lo trova restituisce null
     // sp.GetService<IOptions<DatabaseSettings>>()
 

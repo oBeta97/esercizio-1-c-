@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace esercizio_1.Database
 {
-    public class PostgresDatabaseAccessor(IdbDetails _dbDetails) : Idatabaseaccessor
+    public class PostgresDatabaseAccessor(IDbDetails _dbDetails) : Idatabaseaccessor
     {
 
         private readonly string ConnectionString = _dbDetails.GetConnectionString();

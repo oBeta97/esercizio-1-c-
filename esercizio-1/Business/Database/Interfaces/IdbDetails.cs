@@ -1,6 +1,6 @@
 namespace esercizio_1.Interfaces
 {
-    public interface IdbDetails
+    public interface IDbDetails
     {
         string GetConnectionString();
     }
