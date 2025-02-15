@@ -1,12 +1,12 @@
 using System.Data;
+using esercizio_1.Entities;
 using esercizio_1.Entities.Settings;
 using esercizio_1.Entities.Utils;
 using esercizio_1.Interfaces;
 using esercizio_1.Payloads;
 using Microsoft.Extensions.Options;
-using Sprache;
 
-namespace esercizio_1.Entities
+namespace esercizio_1.Services
 {
     public class AuthorService(IOptions<AuthorsSettings> options, Idatabaseaccessor _db) : IAuthorService
     {

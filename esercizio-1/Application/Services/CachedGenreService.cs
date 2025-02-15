@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using esercizio_1.Entities.EFCore;
 using esercizio_1.Entities.Utils;
 using esercizio_1.Interfaces;
 using esercizio_1.Payloads;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace esercizio_1.Services

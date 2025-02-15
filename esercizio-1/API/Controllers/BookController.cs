@@ -1,4 +1,3 @@
-using esercizio_1.Entities;
 using esercizio_1.Interfaces;
 using esercizio_1.Payloads;
 using Microsoft.AspNetCore.Mvc;

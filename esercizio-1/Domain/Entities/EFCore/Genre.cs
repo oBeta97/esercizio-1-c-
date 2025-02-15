@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace esercizio_1.Entities.EFCore;
+﻿namespace esercizio_1.Entities.EFCore;
 
 public partial class Genre(string name)
 {

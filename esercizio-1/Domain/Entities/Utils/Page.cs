@@ -1,5 +1,3 @@
-using Serilog;
-
 namespace esercizio_1.Entities.Utils
 {
     public class Page<T>(List<T> _items, long _totItems, int _pageLimit, int _pageIndex)

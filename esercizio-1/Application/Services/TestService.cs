@@ -1,6 +1,5 @@
 using System.Data;
 using esercizio_1.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 
 namespace esercizio_1.Services
 {
