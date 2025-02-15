@@ -1,7 +1,7 @@
 using System.Data;
 
 namespace esercizio_1.Entities
-{
+{S
     public class Author
     {
         public int Id { get; set; } // Identificativo unico
